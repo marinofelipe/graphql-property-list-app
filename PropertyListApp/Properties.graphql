@@ -1,0 +1,10 @@
+## LIST QUERY ##
+
+query List {
+    propertyList {
+        title,
+        neighborhood,
+        likes,
+        price
+    }
+}
