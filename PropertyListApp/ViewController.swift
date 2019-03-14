@@ -12,6 +12,28 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    }
+}
+
+class PropertiesService {
+    
+    enum PropertyListError: Error {
+        case unableToFetch
+    }
+    
+    typealias Result = ((_ properties: ListQuery.Data.PropertyList?, _ error: Error?) -> Void)
+    
+    func fetchProperties(result: @escaping Result) {
+        apollo.fetch(query: ListQuery(),
+                     cachePolicy: .fetchIgnoringCacheData,
+                     queue: DispatchQueue.global(qos: .userInteractive)) { response, error in
+            
+            guard let propertyList = response?.data?.propertyList else {
+                result(nil, PropertyListError.unableToFetch)
+                return
+            }
+            
+            result(propertyList, nil)
+        }
     }
 }

@@ -2,9 +2,11 @@
 
 query List {
     propertyList {
-        title,
-        neighborhood,
-        likes,
-        price
+        properties {
+            title,
+            neighborhood,
+            likes,
+            price
+        }
     }
 }
