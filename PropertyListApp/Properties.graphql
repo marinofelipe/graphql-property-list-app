@@ -3,10 +3,18 @@
 query List {
     propertyList {
         properties {
-            title,
-            neighborhood,
-            likes,
-            price
+            ...PropertyInfo
+            ...PropertyInteractions
         }
     }
+}
+
+fragment PropertyInfo on PropertyType {
+    title,
+    neighborhood,
+    price
+}
+
+fragment PropertyInteractions on PropertyType {
+    likes
 }

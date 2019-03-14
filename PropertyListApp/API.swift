@@ -4,7 +4,9 @@ import Apollo
 
 public final class ListQuery: GraphQLQuery {
   public let operationDefinition =
-    "query List {\n  propertyList {\n    __typename\n    properties {\n      __typename\n      title\n      neighborhood\n      likes\n      price\n    }\n  }\n}"
+    "query List {\n  propertyList {\n    __typename\n    properties {\n      __typename\n      ...PropertyInfo\n      ...PropertyInteractions\n    }\n  }\n}"
+
+  public var queryDocument: String { return operationDefinition.appending(PropertyInfo.fragmentDefinition).appending(PropertyInteractions.fragmentDefinition) }
 
   public init() {
   }
@@ -76,10 +78,8 @@ public final class ListQuery: GraphQLQuery {
 
         public static let selections: [GraphQLSelection] = [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-          GraphQLField("title", type: .scalar(String.self)),
-          GraphQLField("neighborhood", type: .scalar(String.self)),
-          GraphQLField("likes", type: .scalar(Int.self)),
-          GraphQLField("price", type: .scalar(Double.self)),
+          GraphQLFragmentSpread(PropertyInfo.self),
+          GraphQLFragmentSpread(PropertyInteractions.self),
         ]
 
         public private(set) var resultMap: ResultMap
@@ -88,8 +88,8 @@ public final class ListQuery: GraphQLQuery {
           self.resultMap = unsafeResultMap
         }
 
-        public init(title: String? = nil, neighborhood: String? = nil, likes: Int? = nil, price: Double? = nil) {
-          self.init(unsafeResultMap: ["__typename": "PropertyType", "title": title, "neighborhood": neighborhood, "likes": likes, "price": price])
+        public init(title: String? = nil, neighborhood: String? = nil, price: Double? = nil, likes: Int? = nil) {
+          self.init(unsafeResultMap: ["__typename": "PropertyType", "title": title, "neighborhood": neighborhood, "price": price, "likes": likes])
         }
 
         public var __typename: String {
@@ -101,39 +101,38 @@ public final class ListQuery: GraphQLQuery {
           }
         }
 
-        public var title: String? {
+        public var fragments: Fragments {
           get {
-            return resultMap["title"] as? String
+            return Fragments(unsafeResultMap: resultMap)
           }
           set {
-            resultMap.updateValue(newValue, forKey: "title")
+            resultMap += newValue.resultMap
           }
         }
 
-        public var neighborhood: String? {
-          get {
-            return resultMap["neighborhood"] as? String
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "neighborhood")
-          }
-        }
+        public struct Fragments {
+          public private(set) var resultMap: ResultMap
 
-        public var likes: Int? {
-          get {
-            return resultMap["likes"] as? Int
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
           }
-          set {
-            resultMap.updateValue(newValue, forKey: "likes")
-          }
-        }
 
-        public var price: Double? {
-          get {
-            return resultMap["price"] as? Double
+          public var propertyInfo: PropertyInfo {
+            get {
+              return PropertyInfo(unsafeResultMap: resultMap)
+            }
+            set {
+              resultMap += newValue.resultMap
+            }
           }
-          set {
-            resultMap.updateValue(newValue, forKey: "price")
+
+          public var propertyInteractions: PropertyInteractions {
+            get {
+              return PropertyInteractions(unsafeResultMap: resultMap)
+            }
+            set {
+              resultMap += newValue.resultMap
+            }
           }
         }
       }
@@ -141,15 +140,17 @@ public final class ListQuery: GraphQLQuery {
   }
 }
 
-public struct Property: GraphQLFragment {
+public struct PropertyInfo: GraphQLFragment {
   public static let fragmentDefinition =
-    "fragment Property on PropertyListType {\n  __typename\n  properties {\n    __typename\n    title\n    neighborhood\n    likes\n    price\n  }\n}"
+    "fragment PropertyInfo on PropertyType {\n  __typename\n  title\n  neighborhood\n  price\n}"
 
-  public static let possibleTypes = ["PropertyListType"]
+  public static let possibleTypes = ["PropertyType"]
 
   public static let selections: [GraphQLSelection] = [
     GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-    GraphQLField("properties", type: .list(.object(Property.selections))),
+    GraphQLField("title", type: .scalar(String.self)),
+    GraphQLField("neighborhood", type: .scalar(String.self)),
+    GraphQLField("price", type: .scalar(Double.self)),
   ]
 
   public private(set) var resultMap: ResultMap
@@ -158,8 +159,8 @@ public struct Property: GraphQLFragment {
     self.resultMap = unsafeResultMap
   }
 
-  public init(properties: [Property?]? = nil) {
-    self.init(unsafeResultMap: ["__typename": "PropertyListType", "properties": properties.flatMap { (value: [Property?]) -> [ResultMap?] in value.map { (value: Property?) -> ResultMap? in value.flatMap { (value: Property) -> ResultMap in value.resultMap } } }])
+  public init(title: String? = nil, neighborhood: String? = nil, price: Double? = nil) {
+    self.init(unsafeResultMap: ["__typename": "PropertyType", "title": title, "neighborhood": neighborhood, "price": price])
   }
 
   public var __typename: String {
@@ -171,79 +172,70 @@ public struct Property: GraphQLFragment {
     }
   }
 
-  public var properties: [Property?]? {
+  public var title: String? {
     get {
-      return (resultMap["properties"] as? [ResultMap?]).flatMap { (value: [ResultMap?]) -> [Property?] in value.map { (value: ResultMap?) -> Property? in value.flatMap { (value: ResultMap) -> Property in Property(unsafeResultMap: value) } } }
+      return resultMap["title"] as? String
     }
     set {
-      resultMap.updateValue(newValue.flatMap { (value: [Property?]) -> [ResultMap?] in value.map { (value: Property?) -> ResultMap? in value.flatMap { (value: Property) -> ResultMap in value.resultMap } } }, forKey: "properties")
+      resultMap.updateValue(newValue, forKey: "title")
     }
   }
 
-  public struct Property: GraphQLSelectionSet {
-    public static let possibleTypes = ["PropertyType"]
-
-    public static let selections: [GraphQLSelection] = [
-      GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-      GraphQLField("title", type: .scalar(String.self)),
-      GraphQLField("neighborhood", type: .scalar(String.self)),
-      GraphQLField("likes", type: .scalar(Int.self)),
-      GraphQLField("price", type: .scalar(Double.self)),
-    ]
-
-    public private(set) var resultMap: ResultMap
-
-    public init(unsafeResultMap: ResultMap) {
-      self.resultMap = unsafeResultMap
+  public var neighborhood: String? {
+    get {
+      return resultMap["neighborhood"] as? String
     }
-
-    public init(title: String? = nil, neighborhood: String? = nil, likes: Int? = nil, price: Double? = nil) {
-      self.init(unsafeResultMap: ["__typename": "PropertyType", "title": title, "neighborhood": neighborhood, "likes": likes, "price": price])
+    set {
+      resultMap.updateValue(newValue, forKey: "neighborhood")
     }
+  }
 
-    public var __typename: String {
-      get {
-        return resultMap["__typename"]! as! String
-      }
-      set {
-        resultMap.updateValue(newValue, forKey: "__typename")
-      }
+  public var price: Double? {
+    get {
+      return resultMap["price"] as? Double
     }
-
-    public var title: String? {
-      get {
-        return resultMap["title"] as? String
-      }
-      set {
-        resultMap.updateValue(newValue, forKey: "title")
-      }
+    set {
+      resultMap.updateValue(newValue, forKey: "price")
     }
+  }
+}
 
-    public var neighborhood: String? {
-      get {
-        return resultMap["neighborhood"] as? String
-      }
-      set {
-        resultMap.updateValue(newValue, forKey: "neighborhood")
-      }
+public struct PropertyInteractions: GraphQLFragment {
+  public static let fragmentDefinition =
+    "fragment PropertyInteractions on PropertyType {\n  __typename\n  likes\n}"
+
+  public static let possibleTypes = ["PropertyType"]
+
+  public static let selections: [GraphQLSelection] = [
+    GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+    GraphQLField("likes", type: .scalar(Int.self)),
+  ]
+
+  public private(set) var resultMap: ResultMap
+
+  public init(unsafeResultMap: ResultMap) {
+    self.resultMap = unsafeResultMap
+  }
+
+  public init(likes: Int? = nil) {
+    self.init(unsafeResultMap: ["__typename": "PropertyType", "likes": likes])
+  }
+
+  public var __typename: String {
+    get {
+      return resultMap["__typename"]! as! String
     }
-
-    public var likes: Int? {
-      get {
-        return resultMap["likes"] as? Int
-      }
-      set {
-        resultMap.updateValue(newValue, forKey: "likes")
-      }
+    set {
+      resultMap.updateValue(newValue, forKey: "__typename")
     }
+  }
 
-    public var price: Double? {
-      get {
-        return resultMap["price"] as? Double
-      }
-      set {
-        resultMap.updateValue(newValue, forKey: "price")
-      }
+  public var likes: Int? {
+    get {
+      return resultMap["likes"] as? Int
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "likes")
     }
   }
 }
