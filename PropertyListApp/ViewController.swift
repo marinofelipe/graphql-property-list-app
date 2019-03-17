@@ -9,8 +9,10 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
+    private var selectedProperty: Property?
+    private var service: PropertiesService = PropertiesService()
     
     private var properties: [Property]? {
         didSet {
@@ -20,17 +22,25 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.rowHeight = 140.0
+        fetchPropertiesList()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         fetchPropertiesList()
     }
     
     private func fetchPropertiesList() {
-        let service = PropertiesService()
         service.fetchProperties { properties, error in
             DispatchQueue.main.async {
                 self.properties = properties
             }
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let detailVC = segue.destination as? DetailViewController else { return }
+        detailVC.propertyId = selectedProperty?.fragments.propertyInfo.id
     }
 }
 
@@ -46,27 +56,9 @@ extension ViewController: UITableViewDataSource {
     }
 }
 
-typealias Property = ListQuery.Data.PropertyList.Property
-
-class PropertiesService {
-    
-    enum PropertyListError: Error {
-        case unableToFetch
-    }
-    
-    typealias Result = ((_ properties: [Property]?, _ error: Error?) -> Void)
-    
-    func fetchProperties(result: @escaping Result) {
-        apollo.fetch(query: ListQuery(),
-                     cachePolicy: .fetchIgnoringCacheData,
-                     queue: DispatchQueue.global(qos: .userInteractive)) { response, error in
-            
-            guard let properties = response?.data?.propertyList?.properties?.compactMap({ $0 }) else {
-                result(nil, PropertyListError.unableToFetch)
-                return
-            }
-                        
-            result(properties, nil)
-        }
+extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedProperty = properties?[indexPath.row]
+        performSegue(withIdentifier: "showDetail", sender: nil)
     }
 }

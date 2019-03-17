@@ -11,29 +11,22 @@ import UIKit
 class PropertyTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var neighborhoodLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var detailsLabel: UILabel!
     @IBOutlet weak var likesLabel: UILabel!
-    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var contactsNamesLabel: UILabel!
     
     func setup(with property: Property) {
         setupInfoView(with: property)
-        setupInteractionsView(with: property)
+        setupContactsView(with: property)
     }
     
     private func setupInfoView(with property: Property) {
         titleLabel.text = property.fragments.propertyInfo.title
-        neighborhoodLabel.text = property.fragments.propertyInfo.neighborhood
-        priceLabel.text = "R$ " + String(property.fragments.propertyInfo.price!)
+        detailsLabel.text = property.fragments.propertyInfo.neighborhood! + ", " + "R$ " + String(property.fragments.propertyInfo.price!)
+        likesLabel.text = String(property.fragments.propertyInfo.likes!) + " curtidas"
     }
     
-    private func setupInteractionsView(with property: Property) {
-        likesLabel.text = String(property.fragments.propertyInteractions.likes!)
-    }
-    
-    @IBAction func didTouchLike(_ sender: Any) {
-        var likesCount = Int(likesLabel.text!)!
-        likesCount += 1
-        likesLabel.text = String(likesCount)
+    private func setupContactsView(with property: Property) {
+        contactsNamesLabel.text = property.fragments.contacts.contacts?.compactMap({ $0?.name }).joined(separator: ", ")
     }
 }

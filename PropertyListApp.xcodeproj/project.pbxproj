@@ -16,6 +16,8 @@
 		751FCF9322389DA40028012A /* Properties.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 751FCF9222389DA40028012A /* Properties.graphql */; };
 		751FCF9522389E7F0028012A /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751FCF9422389E7F0028012A /* API.swift */; };
 		7534B689223AAD6200F2FB47 /* PropertyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7534B688223AAD6200F2FB47 /* PropertyTableViewCell.swift */; };
+		7534B68B223DD24D00F2FB47 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7534B68A223DD24D00F2FB47 /* DetailViewController.swift */; };
+		7534B68D223DD39200F2FB47 /* PropertiesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7534B68C223DD39200F2FB47 /* PropertiesService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		751FCF9222389DA40028012A /* Properties.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Properties.graphql; sourceTree = "<group>"; };
 		751FCF9422389E7F0028012A /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		7534B688223AAD6200F2FB47 /* PropertyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyTableViewCell.swift; sourceTree = "<group>"; };
+		7534B68A223DD24D00F2FB47 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		7534B68C223DD39200F2FB47 /* PropertiesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesService.swift; sourceTree = "<group>"; };
 		7CC03CBF2D56631ADDFC0E1E /* Pods-PropertyListApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PropertyListApp.release.xcconfig"; path = "Target Support Files/Pods-PropertyListApp/Pods-PropertyListApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,6 +83,8 @@
 				751FCF9422389E7F0028012A /* API.swift */,
 				751FCF6D22385E3D0028012A /* AppDelegate.swift */,
 				751FCF6F22385E3D0028012A /* ViewController.swift */,
+				7534B68A223DD24D00F2FB47 /* DetailViewController.swift */,
+				7534B68C223DD39200F2FB47 /* PropertiesService.swift */,
 				7534B688223AAD6200F2FB47 /* PropertyTableViewCell.swift */,
 				751FCF7122385E3D0028012A /* Main.storyboard */,
 				751FCF7422385E3E0028012A /* Assets.xcassets */,
@@ -238,7 +244,9 @@
 			files = (
 				751FCF84223876A60028012A /* ViewController.swift in Sources */,
 				751FCF9522389E7F0028012A /* API.swift in Sources */,
+				7534B68B223DD24D00F2FB47 /* DetailViewController.swift in Sources */,
 				7534B689223AAD6200F2FB47 /* PropertyTableViewCell.swift in Sources */,
+				7534B68D223DD39200F2FB47 /* PropertiesService.swift in Sources */,
 				751FCF6E22385E3D0028012A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

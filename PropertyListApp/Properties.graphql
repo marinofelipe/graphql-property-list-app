@@ -4,17 +4,28 @@ query List {
     propertyList {
         properties {
             ...PropertyInfo
-            ...PropertyInteractions
+            ...Contacts
         }
     }
 }
 
 fragment PropertyInfo on PropertyType {
+    id,
     title,
     neighborhood,
-    price
+    price,
+    likes
 }
 
-fragment PropertyInteractions on PropertyType {
-    likes
+fragment Contacts on PropertyType {
+    contacts {
+        name
+    }
+}
+
+mutation LikeProperty($id: ID!) {
+    likeProperty(id: $id) {
+        success
+        message
+    }
 }
