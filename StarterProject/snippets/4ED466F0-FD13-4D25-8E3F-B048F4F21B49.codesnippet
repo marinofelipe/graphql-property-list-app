@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>ch8</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>func sendLike(inPropertyID propertyId: String,
+                  didUpdate: @escaping ((_ success: Bool) -&gt; Void)) {
+        
+        apollo.perform(mutation: LikePropertyMutation(id: propertyId),
+                       queue: DispatchQueue.global(qos: .userInteractive)) { result, error in
+                        
+                        
+                        if let success = result?.data?.likeProperty.success {
+                            didUpdate(success)
+                            return
+                        }
+                        didUpdate(false)
+        }
+    }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>4ED466F0-FD13-4D25-8E3F-B048F4F21B49</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Append mutation to service</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>ch5</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>func setup(with property: Property) {
+        setupInfoView(with: property)
+        setupContactsView(with: property)
+    }
+    
+    private func setupInfoView(with property: Property) {
+        titleLabel.text = property.fragments.propertyInfo.title
+        detailsLabel.text = property.fragments.propertyInfo.neighborhood! + ", " + "R$ " + String(property.fragments.propertyInfo.price!)
+        likesLabel.text = String(property.fragments.propertyInfo.likes!) + " curtidas"
+    }
+    
+    private func setupContactsView(with property: Property) {
+        contactsNamesLabel.text = property.fragments.contacts.contacts?.compactMap({ $0?.name }).joined(separator: ", ")
+    }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>0FA72569-3127-4E50-A0AE-C92FB3A5AF04</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Cell setup</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>ch2</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>import Apollo
+
+typealias Property = ListQuery.Data.PropertyList.Property
+
+class PropertiesService {
+    
+    enum PropertyListError: Error {
+        case unableToFetch
+    }
+    
+    typealias Result = ((_ properties: [Property]?, _ error: Error?) -&gt; Void)
+    
+    func fetchProperties(result: @escaping Result) {
+        apollo.fetch(query: ListQuery(),
+        cachePolicy: .fetchIgnoringCacheData,
+        queue: DispatchQueue.global(qos: .userInteractive)) { response, error in
+            
+            guard let properties = response?.data?.propertyList?.properties?.compactMap({ $0 }) else {
+                result(nil, PropertyListError.unableToFetch)
+                return
+            }
+            
+            result(properties, nil)
+        }
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>F1BCA5AD-BA94-4CE1-AB49-530227D26B20</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Service Result + Error</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

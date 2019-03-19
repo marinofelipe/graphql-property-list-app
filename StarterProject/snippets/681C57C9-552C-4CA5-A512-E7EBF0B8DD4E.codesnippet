@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>ch0</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>import Apollo
+
+extension URL {
+    static var main: URL { return URL(string: "http://localhost:4000/")! }
+}
+
+var apollo: ApolloClient = {
+    var configuration = URLSessionConfiguration.default
+    configuration.timeoutIntervalForRequest = 20.0
+    configuration.timeoutIntervalForResource = 20.0
+    
+    let networkTransport = HTTPNetworkTransport(url: URL.main, configuration: configuration)
+    return ApolloClient(networkTransport: networkTransport)
+}()</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>681C57C9-552C-4CA5-A512-E7EBF0B8DD4E</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Apollo Client setup</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
