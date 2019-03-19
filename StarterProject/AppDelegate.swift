@@ -7,20 +7,6 @@
 //
 
 import UIKit
-import Apollo
-
-extension URL {
-    static var main: URL { return URL(string: "http://localhost:4000/")! }
-}
-
-var apollo: ApolloClient = {
-    var configuration = URLSessionConfiguration.default
-    configuration.timeoutIntervalForRequest = 20.0
-    configuration.timeoutIntervalForResource = 20.0
-    
-    let networkTransport = HTTPNetworkTransport(url: URL.main, configuration: configuration)
-    return ApolloClient(networkTransport: networkTransport)
-}()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
