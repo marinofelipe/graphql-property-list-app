@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		060C745F800471D6C0C278FF /* Pods_StarterProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D34453E186382958F47CD9D3 /* Pods_StarterProject.framework */; };
 		45C744921BC0697AED93FEE2 /* Pods_PropertyListApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69919FC33DD27987EF690CFE /* Pods_PropertyListApp.framework */; };
 		7589EFDA2240A15B00265C53 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7589EFCC2240A15B00265C53 /* ViewController.swift */; };
 		7589EFDB2240A15B00265C53 /* .graphqlconfig in Resources */ = {isa = PBXBuildFile; fileRef = 7589EFCD2240A15B00265C53 /* .graphqlconfig */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3FDB88A00C24082BB0155405 /* Pods-StarterProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StarterProject.release.xcconfig"; path = "Target Support Files/Pods-StarterProject/Pods-StarterProject.release.xcconfig"; sourceTree = "<group>"; };
 		69919FC33DD27987EF690CFE /* Pods_PropertyListApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PropertyListApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		719FAAAE2D01E0AA9CE93EDD /* Pods-PropertyListApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PropertyListApp.debug.xcconfig"; path = "Target Support Files/Pods-PropertyListApp/Pods-PropertyListApp.debug.xcconfig"; sourceTree = "<group>"; };
 		751FCF6A22385E3D0028012A /* StarterProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarterProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -38,6 +40,8 @@
 		7589EFD82240A15B00265C53 /* Properties.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Properties.graphql; sourceTree = "<group>"; };
 		7589EFD92240A15B00265C53 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7CC03CBF2D56631ADDFC0E1E /* Pods-PropertyListApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PropertyListApp.release.xcconfig"; path = "Target Support Files/Pods-PropertyListApp/Pods-PropertyListApp.release.xcconfig"; sourceTree = "<group>"; };
+		AF219815A648546BAFA3876D /* Pods-StarterProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StarterProject.debug.xcconfig"; path = "Target Support Files/Pods-StarterProject/Pods-StarterProject.debug.xcconfig"; sourceTree = "<group>"; };
+		D34453E186382958F47CD9D3 /* Pods_StarterProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StarterProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +50,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45C744921BC0697AED93FEE2 /* Pods_PropertyListApp.framework in Frameworks */,
+				060C745F800471D6C0C278FF /* Pods_StarterProject.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,6 +62,8 @@
 			children = (
 				719FAAAE2D01E0AA9CE93EDD /* Pods-PropertyListApp.debug.xcconfig */,
 				7CC03CBF2D56631ADDFC0E1E /* Pods-PropertyListApp.release.xcconfig */,
+				AF219815A648546BAFA3876D /* Pods-StarterProject.debug.xcconfig */,
+				3FDB88A00C24082BB0155405 /* Pods-StarterProject.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -102,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				69919FC33DD27987EF690CFE /* Pods_PropertyListApp.framework */,
+				D34453E186382958F47CD9D3 /* Pods_StarterProject.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -193,7 +201,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PropertyListApp-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-StarterProject-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -208,7 +216,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PropertyListApp/Pods-PropertyListApp-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-StarterProject/Pods-StarterProject-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Apollo/Apollo.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -219,7 +227,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PropertyListApp/Pods-PropertyListApp-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-StarterProject/Pods-StarterProject-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		751FCF7F223863770028012A /* Generate Apollo GraphQL API */ = {
@@ -395,7 +403,7 @@
 		};
 		751FCF7D22385E3E0028012A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 719FAAAE2D01E0AA9CE93EDD /* Pods-PropertyListApp.debug.xcconfig */;
+			baseConfigurationReference = AF219815A648546BAFA3876D /* Pods-StarterProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -414,7 +422,7 @@
 		};
 		751FCF7E22385E3E0028012A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7CC03CBF2D56631ADDFC0E1E /* Pods-PropertyListApp.release.xcconfig */;
+			baseConfigurationReference = 3FDB88A00C24082BB0155405 /* Pods-StarterProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
