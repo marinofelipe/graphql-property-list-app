@@ -9,17 +9,14 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>mutation LikeProperty($id: ID!) mutation LikeProperty($id: ID!) {
-    likeProperty(id: $id) {
-        success
-        message
-    }
-}{
-    likeProperty(id: $id) {
-        success
-        message
-    }
-}</string>
+	<string>
+	mutation LikeProperty($id: ID!) {
+    		likeProperty(id: $id) {
+        		success
+        		message
+    		}
+	}
+	</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>89B1C30F-49E7-4307-9092-06A94EAFBA7A</string>
 	<key>IDECodeSnippetLanguage</key>
